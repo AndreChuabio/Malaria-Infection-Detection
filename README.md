@@ -1,120 +1,24 @@
-# 🦠 Malaria Infection Detection with Image Classification
+# Project-3-Identifying-Malaria-Infections-with-Image-Classification
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://www.tensorflow.org/)
-[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/AndreChuabio/Malaria-Infection-Detection/issues)
+This project is an attempt to use image classification to build a simple predicitive model, to determine if cells are paraticized or uninfected by Malaria. We used tensor flow and keras to reach an accuracy of roughly ~95% when the model was used on new an unique test data.
 
-## 📊 Overview
-This project implements an image classification system to detect malaria infections in blood cell images using deep learning techniques. The model aims to provide quick and accurate diagnosis assistance for healthcare professionals.
+## Section 1
+### Software and platform section
+We used R studio software to complete this project. This in conjunction with the Keras package we were able to create a predicitive model that could accuratly identitfy paraticized Malaria Cells (~95% accuracy). The Keras package in R allows for R to build deep learning algorithms and neural networks. This allows us to build a neural network that can correctly predict weather or not a cell has Malaria. The Keras package is actually an API that directly interfaces with the tools and software on Tensorflow by google. The data gathered from this was further synthesized and visualized using ggplot2 in R. This gave us an accurate model and informative diagrams and graphs to explain it. 
 
-![Malaria Detection](https://img.shields.io/badge/Malaria-Detection-red)
 
-## ✨ Features
-- **Deep Learning Model**: CNN-based classification system
-- **High Accuracy**: Trained on validated medical image dataset
-- **User-Friendly Interface**: Easy-to-use prediction pipeline
-- **Detailed Analysis**: Comprehensive model evaluation metrics
 
-## 📚 Data Sources
-The project uses the Malaria Cell Images Dataset from the National Library of Medicine, which contains:
-- Parasitized cell images
-- Uninfected cell images
-- Balanced dataset for training
+## Section 2
+### Navigating the Github
+This github is divided into three sections; Data, Scripts, Output. In the data folder there is a link to the data set we used, A data dictionary for the final data frame we created, and a data Appendix which contains all of our graphs diagrams and charts we produced during our research. The Scripts folder contains the scripts needed to clean and build the predicitive model. There is only one script in this folder and it is the only script needed to reproduce our results. The output folder contains a number of graphs, tables, and diagrams that we produced during our research. These visualizations and tables contain the results of our research.
 
-## 🗂 Project Structure
-```bash
-Malaria-Infection-Detection/
-├── 📁 data/                  # Dataset directory
-│   ├── 📄 parasitized/      # Infected cell images
-│   └── 📄 uninfected/       # Healthy cell images
-├── 📁 models/               # Saved model files
-├── 📁 notebooks/            # Jupyter notebooks
-│   ├── 📊 training/        # Model training
-│   └── 🔧 preprocessing/   # Data preparation
-└── 📁 src/                 # Source code
-    ├── 📄 model.py        # Model architecture
-    ├── 📄 train.py        # Training script
-    └── 📄 predict.py      # Prediction script
-```
 
-## 🚀 Getting Started
 
-### Prerequisites
-- Python 3.8 or higher
-- TensorFlow 2.x
-- Required Python packages:
-  ```bash
-  pip install tensorflow opencv-python numpy pandas scikit-learn
-  ```
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/AndreChuabio/Malaria-Infection-Detection.git
-   cd Malaria-Infection-Detection
-   ```
-2. Download the dataset
-3. Place data files in appropriate `data/` subdirectories
-4. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Section 3
+### Reproducing Results
+The reproduction of our study is very straight forward and simple. First access the data through the link in the data folder. This will lead you to a kaggle page where you can download the data. If you want the primary source for the data feel free to access it on the NIH website. This data needs to be saved to the same loaction as the R project. Once the data is downloaded unzip the file in the desired location. Once the file is unzipped download the R scripts needed to build and analyse the predicitive model. Make sure the file paths have been correctly modified to access the data how you have it organized our your computer. Once this script is run the output will be the results of the model building and testing. This should closely match the results produced in the Github. 
 
-### Running the Model
-1. Train the model:
-   ```bash
-   python src/train.py
-   ```
-2. Make predictions:
-   ```bash
-   python src/predict.py --image path/to/image.jpg
-   ```
 
-## 🔬 Model Architecture
-Our approach includes:
-- **CNN Architecture**: Custom deep learning model
-- **Data Augmentation**: Enhanced training data
-- **Transfer Learning**: Pre-trained model fine-tuning
-- **Model Evaluation**: Comprehensive metrics
 
-## 📈 Performance Metrics
-The model achieves:
-- High accuracy on test set
-- Robust generalization
-- Fast inference time
-- Reliable predictions
 
-## 🤝 Contributing
-We welcome contributions! Here's how you can help:
-
-1. Fork the repository
-2. Create your feature branch:
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. Open a Pull Request
-
-## 📝 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-- Original dataset from the National Library of Medicine
-- TensorFlow team for the deep learning framework
-- Medical imaging community
-
-## 📬 Contact
-Andre Chuabio - [GitHub](https://github.com/AndreChuabio)
-
-Project Link: [https://github.com/AndreChuabio/Malaria-Infection-Detection](https://github.com/AndreChuabio/Malaria-Infection-Detection)
-
----
-⭐️ If you find this project interesting, please consider giving it a star! 

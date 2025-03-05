@@ -1,0 +1,136 @@
+---
+title: "tess"
+author: "Alex Smithgall"
+date: "2024-03-25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE}
+require(R.matlab)
+library(tidyverse)
+library(keras)
+library(tensorflow)
+library(tfdatasets)
+```
+
+```{r}
+image_size <- c(256, 256)
+batch_size <- 32
+
+train_ds <- image_dataset_from_directory(
+  "cell_images",
+  validation_split = 0.2,
+  subset = "training",
+  seed = 1337,
+  image_size = image_size,
+  batch_size = batch_size,
+)
+
+val_ds <- image_dataset_from_directory(
+  "cell_images",
+  validation_split = 0.2,
+  subset = "validation",
+  seed = 1337,
+  image_size = image_size,
+  batch_size = batch_size,
+)
+```
+
+
+```{r}
+batch <- train_ds %>%
+  as_iterator() %>%
+  iter_next()
+
+str(batch)
+```
+
+```{r}
+make_model <- function(input_shape, num_classes) {
+
+  inputs <- layer_input(shape = input_shape)
+
+  x <- inputs %>%
+    # data augmentation() ? %>%
+    layer_rescaling(1.0 / 255)
+
+  x <- x %>%
+    layer_conv_2d(128, 3, strides = 2, padding = "same") %>%
+    layer_batch_normalization() %>%
+    layer_activation("relu")
+
+  previous_block_activation <- x  # Set aside residual
+  for (size in c(256, 512, 728)) {
+    x <- x %>%
+      layer_activation("relu") %>%
+      layer_separable_conv_2d(size, 3, padding = "same") %>%
+      layer_batch_normalization() %>%
+
+      layer_activation("relu") %>%
+      layer_separable_conv_2d(size, 3, padding = "same") %>%
+      layer_batch_normalization() %>%
+
+      layer_max_pooling_2d(3, strides = 2, padding = "same")
+
+    # Project residual
+    residual <- previous_block_activation %>%
+      layer_conv_2d(filters = size, kernel_size = 1, strides = 2,
+                    padding = "same")
+
+    x <- tf$keras$layers$add(list(x, residual))  # Add back residual
+    previous_block_activation <- x  # Set aside next residual
+  }
+
+  x <- x %>%
+    layer_separable_conv_2d(1024, 3, padding = "same") %>%
+    layer_batch_normalization() %>%
+    layer_activation("relu") %>%
+    layer_global_average_pooling_2d()
+
+  if (num_classes == 2) {
+    activation <- "sigmoid"
+    units <- 1
+  } else {
+    activation <- "softmax"
+    units <- num_classes
+  }
+
+  outputs <- x %>%
+    layer_dropout(0.5) %>%
+    layer_dense(units, activation = activation)
+
+  return(keras_model(inputs, outputs))
+}
+
+model <- make_model(input_shape = c(image_size, 3), num_classes = 2)
+
+```
+
+
+
+```{r}
+epochs <- 25
+
+callbacks <- list(callback_model_checkpoint("save_at_{epoch}.keras"))
+model %>% compile(
+  optimizer = optimizer_adam(1e-3),
+  loss = "binary_crossentropy",
+  metrics = list("accuracy"),
+)
+history <- model %>% fit(
+    train_ds,
+    epochs = epochs,
+    callbacks = callbacks,
+    validation_data = val_ds,
+)
+plot(history)
+```
+
+
+
+
+
