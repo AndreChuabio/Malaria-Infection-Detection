@@ -95,6 +95,18 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 ## 📝 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 📚 References
+
+[1] “NLM - Malaria Data.” [Online]. Available: https://lhncbc.nlm.nih.gov/LHC-research/LHC-projects/image-processing/malaria-datasheet.html
+
+[2] “TensorFlow for R - Image classification from scratch.” Accessed: Apr. 12, 2024. [Online]. Available: https://tensorflow.rstudio.com/examples/image_classification_from_scrat
+
+[3] “Fact sheet about malaria.” Accessed: Apr. 21, 2024. [Online]. Available: https://www.who.int/news-room/fact-sheets/detail/malaria
+
+[4] P. J. Rosenthal, “How Do We Best Diagnose Malaria in Africa?,” Am J Trop Med Hyg, vol. 86, no. 2, pp. 192–193, Feb. 2012, doi: 10.4269/ajtmh.2012.11-0619.
+
+[5] J. B. Parr et al., “Analysis of false-negative rapid diagnostic tests for symptomatic malaria in the Democratic Republic of the Congo,” Sci Rep, vol. 11, no. 1, p. 6495, Mar. 2021, doi: 10.1038/s41598-021-85913-z.
+
 ## 🙏 Acknowledgments
 - National Library of Medicine for the dataset
 - R and Keras development teams
